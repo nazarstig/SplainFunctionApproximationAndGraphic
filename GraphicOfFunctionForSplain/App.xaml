@@ -1,0 +1,39 @@
+﻿<Application x:Class="GraphicOfFunctionForSplain.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GraphicOfFunctionForSplain"
+             xmlns:viewModels ="clr-namespace:GraphicOfFunctionForSplain.ViewModels"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+        
+        
+
+        <x:Array x:Key="FunctionsCombobox" Type="local:ComboboxItemFunction">
+        <local:ComboboxItemFunction FunctionExpression="Ln(x)" FunctionNumberInList="first" />
+        <local:ComboboxItemFunction FunctionExpression="1/1+x^2" FunctionNumberInList="second" />
+            <local:ComboboxItemFunction  FunctionExpression="sin(x)" FunctionNumberInList="third" />
+            <local:ComboboxItemFunction  FunctionExpression="tg(x)" FunctionNumberInList="fourth" />
+            <local:ComboboxItemFunction  FunctionExpression="arctg(x)" FunctionNumberInList="fifth" />
+            <local:ComboboxItemFunction  FunctionExpression="sh(x)" FunctionNumberInList="sixth" />
+            <local:ComboboxItemFunction  FunctionExpression="4x-2+3e^(-5x)" FunctionNumberInList="seventh" />
+        </x:Array>
+
+        <local:Helper x:Key="helper"/>
+
+        <Style x:Key="GraphicStyle">
+            <Setter Property = "oxy:PlotView.Width" Value="400"/>
+            <Setter Property = "oxy:PlotView.Height" Value="400"/>
+        </Style>
+
+
+        <viewModels:MainViewModel x:Key="MainViewModelInstance">
+            
+        </viewModels:MainViewModel>
+
+
+        
+        
+    </Application.Resources>
+</Application>

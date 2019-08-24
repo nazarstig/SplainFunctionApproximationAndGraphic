@@ -1,0 +1,68 @@
+﻿<Window x:Class="GraphicOfFunctionForSplain.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pages="clr-namespace:GraphicOfFunctionForSplain.Pages"
+        xmlns:local="clr-namespace:GraphicOfFunctionForSplain"
+        mc:Ignorable="d" 
+        Title="MainWindow">
+   
+    
+    <TabControl>
+        <TabItem Header="Головна сторінка">
+            <Frame>
+                <Frame.Content>
+                    <pages:MainPage/>
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+        <TabItem Header="Графік функції і експоненціальної ланки ермітового сплайна">
+            <Frame>
+                <Frame.Content>
+                    <pages:GraphicPage Graphic="{Binding Source={StaticResource MainViewModelInstance},Path = MyModel1, Mode=TwoWay}" 
+                    Message="{Binding  Source={StaticResource MainViewModelInstance}, Path=ExpInform, Mode=TwoWay}" 
+                    ImagePath="{Binding Source={StaticResource helper}, Path = ExponentialSplainImagePath, Mode=TwoWay}"/>
+                    <!--Source={StaticResource helper}, Path = CubicSplainImagePath , Mode=TwoWay}"--> 
+
+
+
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+        <TabItem Header="Графік похибки наближення функції експоненціальною ланкою ермітового сплайна">
+            <Frame>
+                <Frame.Content>
+                    <pages:GraphicPage Graphic="{Binding Source={StaticResource MainViewModelInstance},Path = MyModel2, Mode=TwoWay}" 
+                    Message="{Binding  Source={StaticResource MainViewModelInstance}, Path=MaxErrorExpMessage, Mode=TwoWay}"/>
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+        <TabItem Header="Графік функції і кубічної ланки ермітового сплайна">
+            <Frame>
+                <Frame.Content>
+                    <pages:GraphicPage Graphic="{Binding Source={StaticResource MainViewModelInstance},Path= MyModel3, Mode=TwoWay}" 
+                    Message="{Binding  Source={StaticResource MainViewModelInstance}, Path=CubicInform, Mode=TwoWay}"
+                    ImagePath="{Binding Source={StaticResource helper}, Path = CubicSplainImagePath, Mode=TwoWay}"/>
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+        <TabItem Header="Графік похибки наближення функції кубічною ланкою ермітового сплайна">
+            <Frame>
+                <Frame.Content>
+                    <pages:GraphicPage Graphic="{Binding Source={StaticResource MainViewModelInstance},Path= MyModel4, Mode=TwoWay}" 
+                    Message="{Binding  Source={StaticResource MainViewModelInstance}, Path=MaxErrorCubicMessage, Mode=TwoWay}"/>
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+        <TabItem Header="Таблиця табуляції функції та сплайнів">
+            <Frame>
+                <Frame.Content>
+                    <pages:TabulationTablePage  TableItems="{Binding Source={StaticResource MainViewModelInstance},Path = TableItems, Mode=TwoWay}" />
+                    
+                </Frame.Content>
+            </Frame>
+        </TabItem>
+    </TabControl>
+    
+</Window>

@@ -1,0 +1,84 @@
+﻿ <UserControl x:Class="GraphicOfFunctionForSplain.Pages.GraphicPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewModels="clr-namespace:GraphicOfFunctionForSplain.ViewModels"
+      xmlns:oxy="http://oxyplot.org/wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      >
+    <UserControl.DataContext>
+        <viewModels:CubicHermiteSplainPageViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Century Gothic" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </UserControl.Resources>
+    
+    <ScrollViewer>
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            <!--<RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>-->
+        </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+        <!--<TextBlock Name="function" Grid.Row="1" Grid.Column="3" Text="{Binding SplainInform}"></TextBlock>-->
+
+        <oxy:PlotView x:Name="mainPlot" Grid.Row="0"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="4"
+                          Style="{StaticResource GraphicStyle}"
+                          Model="{Binding Graphic}"/>
+
+            <!--<Image Source="CubicSection.PNG" Grid.Row="1" Grid.ColumnSpan="4" Grid.Column="0">-->
+            <!--ImageSource=""-->
+                <!--Source="Images\CubicSection.PNG"-->
+                <!--Grid.Row="1" Grid.Column="0"-->
+                <!--<Image.Source>
+                    <BitmapImage UriSource="CubicSection.PNG" x:Uid="Relative" />
+                </Image.Source>-->
+                <!--</Image>-->
+
+                <!--<oxy:PlotView Grid.Row="4"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="4"
+                          Style="{StaticResource GraphicStyle}"
+                          Model="{Binding Source={StaticResource MainViewModelInstance},Path= MyModel4, Mode=TwoWay}"/>-->
+
+
+            <!--Difference plot-->
+
+            <Image HorizontalAlignment="Left" Stretch="Fill" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Width="200" Height="50" Name="EquationImage" Source="{Binding ImagePath}" >
+                <!--<Image.Source>
+                    <BitmapImage UriSource="pack://application:,,,/GraphicOfFunctionForSplain;component/Resources/Images/CubicSection.PNG" />
+                </Image.Source>-->
+                
+            </Image>
+
+                <TextBlock Text="{Binding Message}"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4"/>
+    </Grid>
+</ScrollViewer>
+
+</UserControl>
