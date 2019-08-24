@@ -75,7 +75,6 @@
       <DependentUpon>TabulationTablePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabulationFunctionTableItem.cs" />
-    <Compile Include="ViewModels\MainViewModelInApp.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,7 +92,6 @@
     <Compile Include="Pages\GraphicPage.xaml.cs">
       <DependentUpon>GraphicPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CubicHermiteSplainPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
