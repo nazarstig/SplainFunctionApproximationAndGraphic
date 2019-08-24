@@ -8,9 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       >
-    <UserControl.DataContext>
-        <viewModels:CubicHermiteSplainPageViewModel />
-    </UserControl.DataContext>
+    
     <UserControl.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="FontFamily" Value="Century Gothic" />

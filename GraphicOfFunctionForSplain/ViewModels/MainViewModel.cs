@@ -13,14 +13,17 @@ using System.Collections.ObjectModel;
 using GraphicOfFunctionForSplain;
 namespace GraphicOfFunctionForSplain.ViewModels
 {
-   
-    public enum FunctionList { first = 1,
-                               second = 2,
-                               third = 3,
-                               fourth = 4,
-                               fifth = 5,
-                               sixth = 6,
-                               seventh = 7 };
+
+    public enum FunctionList
+    {
+        first = 1,
+        second = 2,
+        third = 3,
+        fourth = 4,
+        fifth = 5,
+        sixth = 6,
+        seventh = 7
+    };
     public class MainViewModel : INotifyPropertyChanged
     {
         #region Private fields
@@ -30,7 +33,7 @@ namespace GraphicOfFunctionForSplain.ViewModels
         private Func<double, double> _func = (x) => { return Math.Sin(x); };
         private string _leftFunctionLimit;
         private string _rightFunctionLimit;
-        private string _expInform ;
+        private string _expInform;
         private string _cubicInform;
         private FunctionList _functionListEnum = FunctionList.third;
         private double _maxErrorExp;
@@ -47,13 +50,18 @@ namespace GraphicOfFunctionForSplain.ViewModels
         private ExponentialHermiteSplain expSplain;
         private CubicHermiteSplain cubSplain;
         private ErrorCounter _errorCounter;
-        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
 
+        #region Public properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public double TheoreticalErrorExponential
         {
             get { return _theoreticalErrorExponential; }
-            set { _theoreticalErrorExponential = value;
+            set
+            {
+                _theoreticalErrorExponential = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TheoreticalErrorExponential)));
             }
         }
@@ -61,7 +69,9 @@ namespace GraphicOfFunctionForSplain.ViewModels
         public double TheoreticalErrorCubic
         {
             get { return _theoreticalErrorCubic; }
-            set { _theoreticalErrorCubic = value;
+            set
+            {
+                _theoreticalErrorCubic = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TheoreticalErrorCubic)));
             }
         }
@@ -94,20 +104,21 @@ namespace GraphicOfFunctionForSplain.ViewModels
 
 
         public enum FunctionList { first, second, third, fourth, fifth, sixth, seventh };
-        #endregion
 
-        #region Public properties
+
+
 
 
         public FunctionList FunctionListEnum
         {
             get { return _functionListEnum; }
-            set {
+            set
+            {
                 _functionListEnum = value;
                 _func = ChangeFunc();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FunctionListEnum)));
                 RefreshPlots(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());
-                
+
             }
         }
 
@@ -115,22 +126,22 @@ namespace GraphicOfFunctionForSplain.ViewModels
 
         private Func<double, double> ChangeFunc()
         {
-            
-            
+
+
             switch (FunctionListEnum)
             {
                 case FunctionList.first: { return (x) => { return Math.Log(x); }; };
                 case FunctionList.second: { return (x) => { return (1 / (1 + x * x)); }; }
-                case FunctionList.third: { return  (x) => { return Math.Sin(x); }; };
-                case FunctionList.fourth: { return  (x) => { return Math.Tan(x); };  };
-                case FunctionList.fifth: { return  (x) => { return Math.Atan(x); };  };
-                case FunctionList.sixth: { return  (x) => { return Math.Sinh(x); }; };
-                case FunctionList.seventh: { return  (x) => { return (4 * x - 2 + 3 * Math.Exp(-5 * x)); }; };
-                default: { break;  }  //TODO handle error
+                case FunctionList.third: { return (x) => { return Math.Sin(x); }; };
+                case FunctionList.fourth: { return (x) => { return Math.Tan(x); }; };
+                case FunctionList.fifth: { return (x) => { return Math.Atan(x); }; };
+                case FunctionList.sixth: { return (x) => { return Math.Sinh(x); }; };
+                case FunctionList.seventh: { return (x) => { return (4 * x - 2 + 3 * Math.Exp(-5 * x)); }; };
+                default: { break; }  //TODO handle error
             }
             return null;
-          
-          
+
+
         }
 
         public ObservableCollection<TabulationFunctionTableItem> TableItems
@@ -203,24 +214,24 @@ namespace GraphicOfFunctionForSplain.ViewModels
             }
         }
 
-       public PlotModel MyModel1 { get; set; }
+        public PlotModel MyModel1 { get; set; }
 
-       public PlotModel MyModel2 { get; set; }
+        public PlotModel MyModel2 { get; set; }
 
-       public PlotModel MyModel3 { get; set; }
+        public PlotModel MyModel3 { get; set; }
 
-       public PlotModel MyModel4 { get; set; }
+        public PlotModel MyModel4 { get; set; }
 
 
 
         public Func<double, double> ExpApproximation { get; set; }
 
-        
-       
-       public Func<double, double> CubicApproximation { get; set; }
 
- 
-       public string LeftFunctionLimit
+
+        public Func<double, double> CubicApproximation { get; set; }
+
+
+        public string LeftFunctionLimit
         {
             get { return _leftFunctionLimit; }
             set
@@ -228,7 +239,7 @@ namespace GraphicOfFunctionForSplain.ViewModels
                 _leftFunctionLimit = value;
                 if (_rightFunctionLimit != null)
                 {
-               
+
                     RefreshPlots(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());
 
                 }
@@ -253,10 +264,10 @@ namespace GraphicOfFunctionForSplain.ViewModels
                 _rightFunctionLimit = value;
                 if (_leftFunctionLimit != null)
                 {
-               
-                    RefreshPlots(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());   
+
+                    RefreshPlots(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());
                 }
-               
+
             }
         }
 
@@ -268,7 +279,7 @@ namespace GraphicOfFunctionForSplain.ViewModels
             MyModel2 = new PlotModel { Title = "Графік похибки наближення функції експоненціальною ланкою" };
             MyModel3 = new PlotModel { Title = "Графік функції і кубічної ланки" };
             MyModel4 = new PlotModel { Title = "Графік похибки наближення функції кубічною ланкою" };
-           
+
         }
 
         private bool CheckLimits(double leftLimit, double rightLimit)
@@ -276,11 +287,11 @@ namespace GraphicOfFunctionForSplain.ViewModels
             return leftLimit < rightLimit;
         }
 
-        private List<FunctionSeries> CreateFunctionSeries(List<Func<double, double>> funcs, double leftLimit, 
+        private List<FunctionSeries> CreateFunctionSeries(List<Func<double, double>> funcs, double leftLimit,
             double rightLimit, List<string> functionNames)
         {
             List<FunctionSeries> series = new List<FunctionSeries>();
-            for(int i = 0; i < funcs.Count; ++i)
+            for (int i = 0; i < funcs.Count; ++i)
             {
                 series.Add(new FunctionSeries(funcs[i], leftLimit, rightLimit, 0.1, functionNames[i]));
             }
@@ -330,7 +341,7 @@ namespace GraphicOfFunctionForSplain.ViewModels
             ExpInform = expApproximation.AllData();
 
             CubicApproximation = cubicApproximation.CubicPolynomial();
-            //  FunctionTabulation tabulation = new FunctionTabulation(approximation.Polynomial(), 0.1, leftLimit, rightLimit);
+
             FunctionTabulation ExpTabulation = new FunctionTabulation(expApproximation.Polynomial(), Step, leftLimit, rightLimit);
             FunctionTabulation CubicTabulation = new FunctionTabulation(cubicApproximation.CubicPolynomial(), Step, leftLimit, rightLimit);
             ExpInform = expApproximation.AllData();
@@ -340,67 +351,7 @@ namespace GraphicOfFunctionForSplain.ViewModels
             MaxErrorExpMessage = "Похибка :" + MaxErrorExp.ToString();
             MaxErrorCubicMessage = "Похибка :" + MaxErrorCubic.ToString();
             TableItems = RefreshTable(func, ExpTabulation, CubicTabulation);
-            //try
-            //{
-            //    ErrorCounter exp = new ErrorCounter(_leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble(), _func, _precision, 1, 1);
-            //    ErrorCounter cubic = new ErrorCounter(_leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble(), _func, _precision, 2, 1); ;
-            //    TheoreticalErrorExponential = exp.Error;
-            //    TheoreticalErrorCubic = cubic.Error;
-            //}
-            //catch(Exception)
-            //{
 
-            //}
         }
-        //old
-
-        //private void DrawPlot(double leftLimit, double rightLimit)
-        //{
-        //    if (CheckLimits(leftLimit, rightLimit))
-        //    {
-
-        //        ExponentialHermiteSplain expApproximation = new ExponentialHermiteSplain(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());
-        //        CubicHermiteSplain cubicApproximation = new CubicHermiteSplain(_func, _leftFunctionLimit.ParseToDouble(), _rightFunctionLimit.ParseToDouble());
-
-        //        //  FunctionTabulation tabulation = new FunctionTabulation(approximation.Polynomial(), 0.1, leftLimit, rightLimit);
-        //        FunctionTabulation ExpTabulation = new FunctionTabulation(expApproximation.Polynomial(), Step, leftLimit, rightLimit);
-        //        FunctionTabulation CubicTabulation = new FunctionTabulation(cubicApproximation.CubicPolynomial(), Step, leftLimit, rightLimit);
-        //        ExpInform = expApproximation.AllData();
-        //        CubicInform = cubicApproximation.AllData();
-        //        MaxErrorExp = ExpTabulation.FindMaxError(_func);
-        //        MaxErrorCubic = CubicTabulation.FindMaxError(_func);
-        //        MaxErrorExpMessage = "Похибка :" + MaxErrorExp.ToString();
-        //        MaxErrorCubicMessage = "Похибка :" + MaxErrorCubic.ToString();
-        //        TableItems = RefreshTable(_func, ExpTabulation, CubicTabulation);
-        //        MyModel1.Series.Clear();
-        //        MyModel1.ResetAllAxes();
-
-        //        MyModel1.Series.Add(new FunctionSeries(_func, leftLimit, rightLimit, Step, "функція"));
-        //        MyModel1.Series.Add(new FunctionSeries(expApproximation.Polynomial(), leftLimit, rightLimit, Step, "експоненціальна ланка"));
-        //        MyModel1.InvalidatePlot(true);
-
-        //        MyModel2.ResetAllAxes();
-        //        MyModel2.Series.Clear();
-
-        //        MyModel2.Series.Add(new FunctionSeries((x) => { return Math.Abs((_func(x) - expApproximation.Polynomial()(x))); }, leftLimit, rightLimit, Step, "похибка функції"));
-        //        MyModel2.InvalidatePlot(true);
-
-        //        MyModel3.ResetAllAxes();
-        //        MyModel3.Series.Clear();
-
-        //        MyModel3.Series.Add(new FunctionSeries(_func, leftLimit, rightLimit, Step, "функція"));
-        //        MyModel3.Series.Add(new FunctionSeries(cubicApproximation.CubicPolynomial(), leftLimit, rightLimit, 0.05, "кубічна ланка"));
-
-
-        //        MyModel3.InvalidatePlot(true);
-
-        //        MyModel4.ResetAllAxes();
-        //        MyModel4.Series.Clear();
-
-        //        MyModel4.Series.Add(new FunctionSeries((x) => { return Math.Abs((_func(x) - cubicApproximation.CubicPolynomial()(x))); }, leftLimit, rightLimit, Step, "функція"));
-
-        //        MyModel4.InvalidatePlot(true);
-        //  }
-        //  }
     }
 }
