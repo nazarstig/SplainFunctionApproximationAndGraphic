@@ -7,8 +7,6 @@ namespace GraphicOfFunctionForSplain
 {
     class ErrorCounter : IntegralCounterForCore
     {
-      
-
         static int _parametersAmount = 4;
         int _r = 1;
         double _error;
