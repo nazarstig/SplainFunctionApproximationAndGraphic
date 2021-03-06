@@ -13,12 +13,6 @@ namespace GraphicOfFunctionForSplain
         int _r = 1;
         double _error;
 
-
-        
-
-       
-
-
         public static int ParametersAmount
         {
             get { return _parametersAmount; }
